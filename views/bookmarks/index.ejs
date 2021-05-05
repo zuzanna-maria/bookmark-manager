@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="bookmarks">
+
+      <form action="/bookmarks" method="post">
+        <input id="bookmark-textbox" type="text" name="url" placeholder="example.com">
+        <input id="bookmark-tags-textbox" type="text" name="tags" placeholder="news">
+        <input id="bookmark-submit" type="submit" value="save">
+      </form>
+
+      <% bookmarks.forEach((bookmark, index) => { %>
+        <span id="bookmark-<%= index %>"><%= bookmark.url %></span>
+        <% bookmark.Tags.forEach((tag, tagIndex) => { %>
+          <a id="bookmarks-tags-<%= tagIndex %>" href="/tags/<%= tag.name %>"><%= tag.name %></a>
+        <% }) %>
+        <a id="bookmark-<%= index %>-edit" href="/bookmarks/<%= bookmark.id %>/edit">edit</a>
+
+        <form action="/bookmarks/<%= bookmark.id %>?_method=DELETE" method="post">
+          <input id="bookmark-<%= index %>-delete" type="submit" value="delete">
+        </form>
+
+        <a id="bookmark-0-add-comment" href="/bookmarks/<%= bookmark.id %>/comments/new">add comment</a>
+
+        <ul>
+        <% bookmark.Comments.forEach((comment, commentIndex) => { %>
+          <div id="bookmark-<%= index %>-comment-<%= commentIndex %>">
+            <li><%= comment.text %> <i>commented at <%= comment.date() %></i></li>
+          </div>
+        <% }) %>
+        </ul>
+      <% }) %>
+
+    </div>
+
+  </body>
+</html>
