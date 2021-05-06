@@ -7,10 +7,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.set('view engine', 'ejs')
 
+const indexController = require('./controllers/index.js')
 const bookmarksController = require('./controllers/bookmarks.js')
 const commentsController = require('./controllers/comments.js')
 const tagsController = require('./controllers/tags.js')
 
+app.use('/', indexController)
 app.use('/bookmarks', bookmarksController)
 app.use('/bookmarks/:bookmarkId/comments', commentsController)
 app.use('/tags', tagsController)
