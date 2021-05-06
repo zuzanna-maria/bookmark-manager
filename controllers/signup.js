@@ -16,12 +16,9 @@ router.post('/confirmation', async function (req, res) {
         passwordHash: Password
       }).then(user => {
         req.session.userId = user.id
-
-        console.log(req.session.userId)
         res.render('signup/confirmation')
       }).catch(errors => {
         res.render('signup/new', { errors: errors.errors[0].message })
-        console.log(errors.errors[0].message)
       })
 })
 

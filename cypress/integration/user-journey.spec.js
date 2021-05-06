@@ -1,5 +1,9 @@
 describe("User journey tests:", function(){
 
+    beforeEach(function() {
+        cy.task("resetDb")
+      })
+
     it("Go to index page, should see sign up link:", function(){
         cy.visit('/')
         cy.get('#sign-up-link').should('contain','Sign Up')
@@ -32,6 +36,8 @@ describe("User journey tests:", function(){
         cy.get('#email-textbox').type('jj@hotmail.com')
         cy.get('#password-textbox').type('1111')
         cy.get('#submit-button').click()
+        cy.url().should('contain', 'signup/confirmation')
+        cy.get('#Continue').click()
         cy.url().should('contain', '/bookmarks')
     })
 
@@ -42,6 +48,7 @@ describe("User journey tests:", function(){
         cy.get('#email-textbox').type('jj')
         cy.get('#password-textbox').type('1111')
         cy.get('#submit-button').click()
+        cy.contains('Email invalid')
         cy.url().should('contain', '/signup')
     })
 
@@ -52,6 +59,7 @@ describe("User journey tests:", function(){
         cy.get('#email-textbox').type('jj@hotmail.com')
         cy.get('#password-textbox').type('1111')
         cy.get('#submit-button').click()
+        cy.get('#Continue').click()
         cy.url().should('contain', '/bookmarks')
         cy.get('#bookmark-textbox').type('google.com')
         cy.get('#bookmark-submit').click()
