@@ -50,7 +50,7 @@ module.exports = (on, config) => {
 
     resetUser() {
       console.log('running resetUser task')
-      truncateUsers
+      truncateUsers()
       return null
     }
   })

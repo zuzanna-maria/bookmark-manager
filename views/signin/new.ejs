@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, maximum-scale=1">
+ <title></title>
+</head>
+<body>
+    <p>Please sign in!</p>
+    <form action="/signin/new" method="POST">
+    <input id= "email-textbox" type="text" name="email" placeholder="joebloggs@hotmail.com" >
+    <input id="password-textbox" type="text" name="password">
+    <input id="submit-button" type="submit" value="Submit">
+    </form>
+    <p><%= errors %></p>
+</body>
+</html>

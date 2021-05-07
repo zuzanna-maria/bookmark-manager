@@ -14,17 +14,21 @@ const signupController = require('./controllers/signup.js')
 const bookmarksController = require('./controllers/bookmarks.js')
 const commentsController = require('./controllers/comments.js')
 const tagsController = require('./controllers/tags.js')
+const signinController = require('./controllers/signin.js')
 
 function validateSessionId (req, res, next) {
     if (req.session.userId) {
     next()
   } else {
+    console.log(req.session.userId)
+    console.log('incorrect redirect!')
     res.redirect('/')
   }
 }
 
 app.use('/', indexController)
 app.use('/signup', signupController)
+app.use('/signin', signinController)
 app.use(validateSessionId)
 app.use('/bookmarks', bookmarksController)
 app.use('/bookmarks/:bookmarkId/comments', commentsController)
