@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
        isEmail: true,
        allowNull: false,
        validate: {
-        isEmail: {msg: 'Email invalid'}
+        isEmail: {msg: 'Email invalid'},
       }
     },
     passwordHash: DataTypes.STRING

@@ -19,6 +19,8 @@
 const truncateTables = require('../../db-reset.js')
 const seedDatabase = require('../../db-seed.js')
 const bookmarksWithTags = require('../../db-create-bookmarks-with-tags.js')
+const seedUser = require('../../user-seed.js')
+const truncateUsers = require('../../user-reset.js')
 
 module.exports = (on, config) => {
   on('task', {
@@ -37,6 +39,18 @@ module.exports = (on, config) => {
     createBookmarksWithTags() {
       console.log('running createBookmarksWithTags task')
       bookmarksWithTags()
+      return null
+    },
+
+    seedExampleUser(){
+      console.log('running seedUser task')
+      seedUser()
+      return null
+    },
+
+    resetUser() {
+      console.log('running resetUser task')
+      truncateUsers
       return null
     }
   })
