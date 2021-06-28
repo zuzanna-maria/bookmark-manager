@@ -1,6 +1,6 @@
 # Bookmark Manager
 
-***To run project ***
+***To run project***
 
 ```sh
 $ npm install
